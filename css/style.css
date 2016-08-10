@@ -870,6 +870,18 @@ header nav ul li a:hover {
 .all-list-box {
   min-height: 400px;
 }
+::selection {
+  background: #33a183;
+  color: #fff;
+}
+::-moz-selection {
+  background: #33a183;
+  color: #fff;
+}
+::-webkit-selection {
+  background: #33a183;
+  color: #fff;
+}
 .post,
 .page,
 .link,
