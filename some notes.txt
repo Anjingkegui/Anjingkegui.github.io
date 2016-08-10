@@ -1,0 +1,21 @@
+到指定目录下执行
+hexo init
+npm install
+
+和
+npm install hexo-deployer-git --save
+
+装主题
+git clone https://github.com/wuchong/jacman.git themes/jacman
+
+就行了。
+
+
+拷贝好文件即可。
+
+
+
+现在的问题是：
+1.搜索，用微搜索？
+2.提升搜索引擎的检索？sitemap？
+3.totop
