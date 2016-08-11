@@ -4,23 +4,52 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>好了，搭建好自己的主页了！ | Xiong Hao&#39;s Blog</title>
+    <title>test 格式 | Xiong Hao&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Xiong Hao">
     
 
     
-    <meta name="description" content="先挖个坑。。。">
+    <meta name="description" content="只是用来测试。
+`    #include 
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;string&amp;gt;
+#include &amp;lt;cstring&amp;gt;
+#include &amp;lt;cstdlib&amp;gt;
+#include &amp;lt;ctime&amp;gt;
+
+#include &amp;lt;sys/types.h&amp;gt;
+#include &amp;lt;sys/wait.h&amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="好了，搭建好自己的主页了！">
-<meta property="og:url" content="http://www.xionghao.site/2016/08/10/first-blog/index.html">
+<meta property="og:title" content="test 格式">
+<meta property="og:url" content="http://www.xionghao.site/2016/08/11/test-格式/index.html">
 <meta property="og:site_name" content="Xiong Hao's Blog">
-<meta property="og:description" content="先挖个坑。。。">
-<meta property="og:updated_time" content="2016-08-10T14:42:44.176Z">
+<meta property="og:description" content="只是用来测试。
+`    #include 
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;string&amp;gt;
+#include &amp;lt;cstring&amp;gt;
+#include &amp;lt;cstdlib&amp;gt;
+#include &amp;lt;ctime&amp;gt;
+
+#include &amp;lt;sys/types.h&amp;gt;
+#include &amp;lt;sys/wait.h&amp;">
+<meta property="og:image" content="http://oboo3frns.bkt.clouddn.com/624016907348096797.jpg">
+<meta property="og:updated_time" content="2016-08-11T04:41:30.989Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="好了，搭建好自己的主页了！">
-<meta name="twitter:description" content="先挖个坑。。。">
+<meta name="twitter:title" content="test 格式">
+<meta name="twitter:description" content="只是用来测试。
+`    #include 
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;string&amp;gt;
+#include &amp;lt;cstring&amp;gt;
+#include &amp;lt;cstdlib&amp;gt;
+#include &amp;lt;ctime&amp;gt;
+
+#include &amp;lt;sys/types.h&amp;gt;
+#include &amp;lt;sys/wait.h&amp;">
+<meta name="twitter:image" content="http://oboo3frns.bkt.clouddn.com/624016907348096797.jpg">
 
     
     
@@ -77,20 +106,92 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/10/first-blog/" title="好了，搭建好自己的主页了！" itemprop="url">好了，搭建好自己的主页了！</a>
+      <a href="/2016/08/11/test-格式/" title="test 格式" itemprop="url">test 格式</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Xiong Hao" target="_blank" itemprop="author">Xiong Hao</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-10T14:05:56.000Z" itemprop="datePublished"> 发表于 2016-08-10</time>
+    <time datetime="2016-08-11T04:37:52.000Z" itemprop="datePublished"> 发表于 2016-08-11</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
-		<p>先挖个坑。。。<br><a id="more"></a><br>以后再慢慢补上。。。</p>
+		<p>只是用来测试。</p>
+<p>`    #include <stdio.h></stdio.h></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;cstring&gt;
+#include &lt;cstdlib&gt;
+#include &lt;ctime&gt;
+
+#include &lt;sys/types.h&gt;
+#include &lt;sys/wait.h&gt;
+#include &lt;signal.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/wait.h&gt;
+#include &quot;mqueue.h&quot;
+#include &quot;message.h&quot;
+#include &quot;lock.h&quot;
+
+using namespace std;
+
+void Dlock::lk_sendrcv(int type, string data)
+{
+    msg.type = type;
+    strcpy(pclient-&gt;lock, data.c_str());
+
+    mq_write(m_id, msg.type, (char *)&amp;msg, sizeof(client_t));
+    mq_read(id, MSG_ANY, (char *)&amp;msg, MAX_MSG_LEN);
+}
+
+Dlock::Dlock():pclient((struct client_t *)&amp;msg.data)
+{
+
+
+    ns_id = mq_open((char *)DNS_NODE,IPC_CREAT); 
+
+    lookup_server(ns_id, pclient-&gt;server,  sizeof(pclient-&gt;server));
+    lookup_name(ns_id, pclient-&gt;name, sizeof(pclient-&gt;name));
+
+    m_id = mq_open((char *)pclient-&gt;server, IPC_CREAT);
+    id = mq_open(pclient-&gt;name, IPC_CREAT | IPC_EXCL);
+
+     pclient-&gt;type = 0;
+     msg.type = MSG_REGISTER;
+
+     mq_write(m_id, MSG_REGISTER, (char *)&amp;msg, sizeof(client_t));
+     mq_read(id, MSG_REGISTER_ACK, (char *)&amp;msg, sizeof(client_t));
+
+     uuid = pclient-&gt;uuid;
+}
+
+bool Dlock::TryLock(string lk)
+{
+    lk_sendrcv(MSG_LOCK_REQUEST, lk);
+    return msg.type == MSG_LOCK_GRANT;
+}
+
+bool Dlock::TryUnlock(string lk)
+{
+    lk_sendrcv(MSG_LOCK_RELEASE, lk);
+    return msg.type == MSG_LOCK_IDLE;
+}
+
+bool Dlock::isOwnLock(string lk)
+{
+
+    lk_sendrcv(MSG_LOCK_INRUIRY, lk);
+    return msg.type == MSG_LOCK_OWN;
+}
+
+Dlock::~Dlock()
+{
+    mq_close(id);
+}`
+</code></pre><p>来张图<br><br><img src="http://oboo3frns.bkt.clouddn.com/624016907348096797.jpg" alt="pic"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -98,13 +199,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
+  <a class="article-category-link" href="/categories/测试/">测试</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Hexo/">Hexo</a><a href="/tags/搭建博客/">搭建博客</a>
+  <span></span> <a href="/tags/test/">test</a>
   </div>
 
 </div>
@@ -113,7 +214,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://www.xionghao.site/2016/08/10/first-blog/" data-title="好了，搭建好自己的主页了！ | Xiong Hao&#39;s Blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://www.xionghao.site/2016/08/11/test-格式/" data-title="test 格式 | Xiong Hao&#39;s Blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -126,20 +227,20 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/08/11/test-格式/" title="test 格式">
-  <strong>上一篇：</strong><br/>
-  <span>
-  test 格式</span>
+
+<div class="next">
+<a href="/2016/08/10/first-blog/"  title="好了，搭建好自己的主页了！">
+ <strong>下一篇：</strong><br/> 
+ <span>好了，搭建好自己的主页了！
+</span>
 </a>
 </div>
-
 
 </nav>
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/08/10/first-blog/" data-title="好了，搭建好自己的主页了！" data-url="http://www.xionghao.site/2016/08/10/first-blog/"></div>
+	<div class="ds-thread" data-thread-key="2016/08/11/test-格式/" data-title="test 格式" data-url="http://www.xionghao.site/2016/08/11/test-格式/"></div>
 </section>
 
 
