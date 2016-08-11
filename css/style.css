@@ -2022,7 +2022,7 @@ footer {
   }
 }
 .social-font a:hover:before {
-  color: #474b42;
+  color: #000;
 }
 .icon-weibo:before,
 .icon-weixin:before,
