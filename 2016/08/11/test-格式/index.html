@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Xiong Hao's Blog">
 <meta property="og:description" content="只是用来测试。">
 <meta property="og:image" content="http://oboo3frns.bkt.clouddn.com/624016907348096797.jpg">
-<meta property="og:updated_time" content="2016-08-11T04:51:25.521Z">
+<meta property="og:updated_time" content="2016-08-11T04:53:03.474Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="test 格式">
 <meta name="twitter:description" content="只是用来测试。">
@@ -92,79 +92,8 @@
 </header>
 	<div class="article-content">
 		
-		<p>只是用来测试。<br><a id="more"></a><br>正文啦。。。<br>‘’’+c</p>
-<pre><code>#include &lt;stdio.h&gt;
-#include &lt;iostream&gt;
-#include &lt;string&gt;
-#include &lt;cstring&gt;
-#include &lt;cstdlib&gt;
-#include &lt;ctime&gt;
-
-#include &lt;sys/types.h&gt;
-#include &lt;sys/wait.h&gt;
-#include &lt;signal.h&gt;
-#include &lt;unistd.h&gt;
-#include &lt;sys/wait.h&gt;
-#include &quot;mqueue.h&quot;
-#include &quot;message.h&quot;
-#include &quot;lock.h&quot;
-
-using namespace std;
-
-void Dlock::lk_sendrcv(int type, string data)
-{
-    msg.type = type;
-    strcpy(pclient-&gt;lock, data.c_str());
-
-    mq_write(m_id, msg.type, (char *)&amp;msg, sizeof(client_t));
-    mq_read(id, MSG_ANY, (char *)&amp;msg, MAX_MSG_LEN);
-}
-
-Dlock::Dlock():pclient((struct client_t *)&amp;msg.data)
-{
-
-
-    ns_id = mq_open((char *)DNS_NODE,IPC_CREAT); 
-
-    lookup_server(ns_id, pclient-&gt;server,  sizeof(pclient-&gt;server));
-    lookup_name(ns_id, pclient-&gt;name, sizeof(pclient-&gt;name));
-
-    m_id = mq_open((char *)pclient-&gt;server, IPC_CREAT);
-    id = mq_open(pclient-&gt;name, IPC_CREAT | IPC_EXCL);
-
-     pclient-&gt;type = 0;
-     msg.type = MSG_REGISTER;
-
-     mq_write(m_id, MSG_REGISTER, (char *)&amp;msg, sizeof(client_t));
-     mq_read(id, MSG_REGISTER_ACK, (char *)&amp;msg, sizeof(client_t));
-
-     uuid = pclient-&gt;uuid;
-}
-
-bool Dlock::TryLock(string lk)
-{
-    lk_sendrcv(MSG_LOCK_REQUEST, lk);
-    return msg.type == MSG_LOCK_GRANT;
-}
-
-bool Dlock::TryUnlock(string lk)
-{
-    lk_sendrcv(MSG_LOCK_RELEASE, lk);
-    return msg.type == MSG_LOCK_IDLE;
-}
-
-bool Dlock::isOwnLock(string lk)
-{
-
-    lk_sendrcv(MSG_LOCK_INRUIRY, lk);
-    return msg.type == MSG_LOCK_OWN;
-}
-
-Dlock::~Dlock()
-{
-    mq_close(id);
-}
-</code></pre><p>‘’’<br>来张图<br><img src="http://oboo3frns.bkt.clouddn.com/624016907348096797.jpg" alt="pic"></p>
+		<p>只是用来测试。<br><a id="more"></a><br>正文啦。。。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;string&gt;</div><div class="line">#include &lt;cstring&gt;</div><div class="line">#include &lt;cstdlib&gt;</div><div class="line">#include &lt;ctime&gt;</div><div class="line"></div><div class="line">#include &lt;sys/types.h&gt;</div><div class="line">#include &lt;sys/wait.h&gt;</div><div class="line">#include &lt;signal.h&gt;</div><div class="line">#include &lt;unistd.h&gt;</div><div class="line">#include &lt;sys/wait.h&gt;</div><div class="line">#include &quot;mqueue.h&quot;</div><div class="line">#include &quot;message.h&quot;</div><div class="line">#include &quot;lock.h&quot;</div><div class="line"></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">void Dlock::lk_sendrcv(int type, string data)</div><div class="line">&#123;</div><div class="line">    msg.type = type;</div><div class="line">    strcpy(pclient-&gt;lock, data.c_str());</div><div class="line"></div><div class="line">    mq_write(m_id, msg.type, (char *)&amp;msg, sizeof(client_t));</div><div class="line">    mq_read(id, MSG_ANY, (char *)&amp;msg, MAX_MSG_LEN);</div><div class="line">&#125;</div><div class="line"></div><div class="line">Dlock::Dlock():pclient((struct client_t *)&amp;msg.data)</div><div class="line">&#123;</div><div class="line"></div><div class="line"></div><div class="line">    ns_id = mq_open((char *)DNS_NODE,IPC_CREAT); </div><div class="line"></div><div class="line">    lookup_server(ns_id, pclient-&gt;server,  sizeof(pclient-&gt;server));</div><div class="line">    lookup_name(ns_id, pclient-&gt;name, sizeof(pclient-&gt;name));</div><div class="line"></div><div class="line">    m_id = mq_open((char *)pclient-&gt;server, IPC_CREAT);</div><div class="line">    id = mq_open(pclient-&gt;name, IPC_CREAT | IPC_EXCL);</div><div class="line">    </div><div class="line">     pclient-&gt;type = 0;</div><div class="line">     msg.type = MSG_REGISTER;</div><div class="line"></div><div class="line">     mq_write(m_id, MSG_REGISTER, (char *)&amp;msg, sizeof(client_t));</div><div class="line">     mq_read(id, MSG_REGISTER_ACK, (char *)&amp;msg, sizeof(client_t));</div><div class="line"></div><div class="line">     uuid = pclient-&gt;uuid;</div><div class="line">&#125;</div><div class="line"></div><div class="line">bool Dlock::TryLock(string lk)</div><div class="line">&#123;</div><div class="line">    lk_sendrcv(MSG_LOCK_REQUEST, lk);</div><div class="line">    return msg.type == MSG_LOCK_GRANT;</div><div class="line">&#125;</div><div class="line"></div><div class="line">bool Dlock::TryUnlock(string lk)</div><div class="line">&#123;</div><div class="line">    lk_sendrcv(MSG_LOCK_RELEASE, lk);</div><div class="line">    return msg.type == MSG_LOCK_IDLE;</div><div class="line">&#125;</div><div class="line"></div><div class="line">bool Dlock::isOwnLock(string lk)</div><div class="line">&#123;</div><div class="line"></div><div class="line">    lk_sendrcv(MSG_LOCK_INRUIRY, lk);</div><div class="line">    return msg.type == MSG_LOCK_OWN;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Dlock::~Dlock()</div><div class="line">&#123;</div><div class="line">    mq_close(id);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>来张图<br><img src="http://oboo3frns.bkt.clouddn.com/624016907348096797.jpg" alt="pic"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -247,15 +176,15 @@ Dlock::~Dlock()
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/搭建博客/" title="搭建博客">搭建博客<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
 			
 		
 		</ul>
