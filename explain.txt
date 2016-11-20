@@ -1,0 +1,23 @@
+1.windows 删除 node_modules 目录时提示文件名或扩展名太长无法删除,解决方案，使用 node 模块 rimraf.
+
+全局安装模块 
+npm install -g rimraf
+
+删除目录 
+rimraf node_modules
+
+2.重装或者更换电脑博客怎么处理？
+hexo分之下的文件即我的全部配置。
+在新系统（设备）上重走一遍流程，再以本分支下这些文件替换即可。
+回顾：
+npm install -g hexo 或 npm install hexo
+hexo init
+npm install
+npm install hexo-deployer-git --save 或 npm install hexo-deployer-git
+
+装好之后的常用命令：
+hexo new ***  // *** 指代文件系统中该文件的标题，前面自动会加上日期，不用担心重名
+              // 去编辑md文件
+hexo clean    // 清理
+hexo s        // 开启本地预览
+hexo g -d     // 生成和发布
