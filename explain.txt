@@ -7,7 +7,7 @@ npm install -g rimraf
 rimraf node_modules
 
 2.重装或者更换电脑博客怎么处理？
-hexo分之下的文件即我的全部配置。
+hexo分支下的文件即我的全部配置。
 在新系统（设备）上重走一遍流程，再以本分支下这些文件替换即可。
 回顾：
 npm install -g hexo 或 npm install hexo
